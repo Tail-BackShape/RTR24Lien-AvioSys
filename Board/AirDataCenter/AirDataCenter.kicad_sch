@@ -1,0 +1,145 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "63adafef-d556-46d1-ae91-e24e778e6981")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 69.85 55.626)
+		(size 81.28 43.688)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "48f56978-31fc-4b6f-b30e-afa17a9e5afe")
+		(property "Sheetname" "MCU"
+			(at 69.85 53.0494 0)
+			(effects
+				(font
+					(size 5 5)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "MCU.kicad_sch"
+			(at 69.85 99.8986 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "フィールド2" ""
+			(at 69.85 55.626 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "AirDataCenter"
+				(path "/63adafef-d556-46d1-ae91-e24e778e6981"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 53.086 42.164)
+		(size 107.696 67.818)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "72986e80-2572-4cb1-8b80-8e81f50162e1")
+		(property "Sheetname" "Power"
+			(at 53.086 39.5874 0)
+			(effects
+				(font
+					(size 5 5)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Power.kicad_sch"
+			(at 53.086 110.5666 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "AirDataCenter"
+				(path "/63adafef-d556-46d1-ae91-e24e778e6981"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 81.788 66.548)
+		(size 54.864 20.828)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "f5e1cb5e-778c-43eb-a6aa-11e00c22d42c")
+		(property "Sheetname" "sensor"
+			(at 81.788 63.9714 0)
+			(effects
+				(font
+					(size 5 5)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sensor.kicad_sch"
+			(at 81.788 87.9606 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "フィールド2" ""
+			(at 81.788 66.548 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "AirDataCenter"
+				(path "/63adafef-d556-46d1-ae91-e24e778e6981"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

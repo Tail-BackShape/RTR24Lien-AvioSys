@@ -1,0 +1,10 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+C1,0603,1,1uF,
+C2,0603,1,0.1uF,
+D1,D_SOD-323F,1,D,
+D2,0603,1,LED,
+J1,AMASS_XT60-F_1x02_P7.20mm_Vertical,1,Conn_01x02,
+J2,JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,1,Conn_01x02,
+J3,JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal,1,Conn_01x06,
+R1,0603,1,100,
+U1,TO-252-2,1,KA78M05_TO252,

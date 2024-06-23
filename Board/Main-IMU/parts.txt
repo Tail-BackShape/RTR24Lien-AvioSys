@@ -1,0 +1,14 @@
+usb c:		https://akizukidenshi.com/catalog/g/g114356/
+esp32:		https://akizukidenshi.com/catalog/g/g115675/
+sbd:		https://akizukidenshi.com/catalog/g/g116577/
+LDO:		https://akizukidenshi.com/catalog/g/g111299/
+IMU:		https://akizukidenshi.com/catalog/g/g113010
+Serial Conv:	https://akizukidenshi.com/catalog/g/g116306/
+SD Card:	https://akizukidenshi.com/catalog/g/g102395/
+RJ45:		https://akizukidenshi.com/catalog/g/g100159/
+switch:		https://akizukidenshi.com/catalog/g/g114888/
+RTC:		https://akizukidenshi.com/catalog/g/g106950/
+crystal:	https://akizukidenshi.com/catalog/g/g107195/
+Temp:		https://akizukidenshi.com/catalog/g/g106860/
+NPN:		https://akizukidenshi.com/catalog/g/g100761/
+BAT hold:	https://akizukidenshi.com/catalog/g/g109561

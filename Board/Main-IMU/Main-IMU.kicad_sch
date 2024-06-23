@@ -1,0 +1,148 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "5338e63e-1988-41ba-a797-f5a85d5c350a")
+	(paper "A4")
+	(lib_symbols)
+	(text "**コネクタルール\n1がVcc\n一番大きい数がGND\nUART/TX,RX\nI2C/SDA,SCL"
+		(exclude_from_sim no)
+		(at 253.492 40.386 0)
+		(effects
+			(font
+				(size 4 4)
+			)
+		)
+		(uuid "2335288e-0e4d-4a78-a54a-b938f969c2aa")
+	)
+	(text "2024/06/02\n**修正**\nRTC:DS1307(U6)のSQWピンにPullUp抵抗を追加\n書き込み回路のトランジスタ(Q1,Q2)のフットプリントを置き換え\nCANトランシーバーのフットプリント修正\nCANBUSに電源ラインを追加"
+		(exclude_from_sim no)
+		(at 23.622 178.054 0)
+		(effects
+			(font
+				(size 4 4)
+			)
+			(justify left)
+		)
+		(uuid "c575c023-6d41-4109-991d-e1cfda07f398")
+	)
+	(sheet
+		(at 28.575 31.115)
+		(size 163.195 125.095)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "25d39ab8-e2d1-4a3b-bdc8-d18f669f10fc")
+		(property "Sheetname" "Power"
+			(at 28.575 27.5384 0)
+			(effects
+				(font
+					(size 7 7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Power.kicad_sch"
+			(at 28.575 156.7946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Main-IMU"
+				(path "/5338e63e-1988-41ba-a797-f5a85d5c350a"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 51.435 56.515)
+		(size 128.27 85.09)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "5a0989e3-076d-4d1d-aaa2-10b5023a2506")
+		(property "Sheetname" "MCU"
+			(at 51.435 52.9384 0)
+			(effects
+				(font
+					(size 7 7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "MCU.kicad_sch"
+			(at 51.435 142.1896 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Main-IMU"
+				(path "/5338e63e-1988-41ba-a797-f5a85d5c350a"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 93.98 83.82)
+		(size 74.93 47.625)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "bd146200-2a93-42ba-8e66-15734a2d688a")
+		(property "Sheetname" "sensor"
+			(at 93.98 80.2434 0)
+			(effects
+				(font
+					(size 7 7)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sensor.kicad_sch"
+			(at 93.98 132.0296 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Main-IMU"
+				(path "/5338e63e-1988-41ba-a797-f5a85d5c350a"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

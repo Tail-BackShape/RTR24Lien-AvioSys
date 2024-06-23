@@ -1,0 +1,1494 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "ed31c94b-5a14-4293-9968-8f07a66085e6")
+	(paper "A4")
+	(lib_symbols
+		(symbol "Connector:RJ45"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at -5.08 13.97 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify right)
+				)
+			)
+			(property "Value" "RJ45"
+				(at 2.54 13.97 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0.635 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0.635 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "RJ connector, 8P8C (8 positions 8 connected)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "8P8C RJ socket connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "8P8C* RJ31* RJ32* RJ33* RJ34* RJ35* RJ41* RJ45* RJ49* RJ61*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "RJ45_0_1"
+				(polyline
+					(pts
+						(xy -5.08 4.445) (xy -6.35 4.445)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -5.08 5.715) (xy -6.35 5.715)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -6.35 -3.175) (xy -5.08 -3.175) (xy -5.08 -3.175)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -6.35 -1.905) (xy -5.08 -1.905) (xy -5.08 -1.905)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -6.35 -0.635) (xy -5.08 -0.635) (xy -5.08 -0.635)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -6.35 0.635) (xy -5.08 0.635) (xy -5.08 0.635)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -6.35 1.905) (xy -5.08 1.905) (xy -5.08 1.905)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -5.08 3.175) (xy -6.35 3.175) (xy -6.35 3.175)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -6.35 -4.445) (xy -6.35 6.985) (xy 3.81 6.985) (xy 3.81 4.445) (xy 5.08 4.445) (xy 5.08 3.175)
+						(xy 6.35 3.175) (xy 6.35 -0.635) (xy 5.08 -0.635) (xy 5.08 -1.905) (xy 3.81 -1.905) (xy 3.81 -4.445)
+						(xy -6.35 -4.445) (xy -6.35 -4.445)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start 7.62 12.7)
+					(end -7.62 -10.16)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "RJ45_1_1"
+				(pin passive line
+					(at 10.16 -7.62 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -5.08 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -2.54 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 0 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 5.08 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 7.62 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 10.16 180)
+					(length 2.54)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+	)
+	(no_connect
+		(at 78.74 95.25)
+		(uuid "08fc5d30-770a-4215-9c9e-fe4c687fdbda")
+	)
+	(no_connect
+		(at 78.74 52.07)
+		(uuid "09f91e6d-2160-4714-bee1-d4e00dd019b2")
+	)
+	(no_connect
+		(at 143.51 59.69)
+		(uuid "0dd2c916-51d7-42c6-9e99-b234c50e080c")
+	)
+	(no_connect
+		(at 78.74 57.15)
+		(uuid "1f8f0ed7-3261-47cb-89a3-eadc0af3026a")
+	)
+	(no_connect
+		(at 78.74 100.33)
+		(uuid "4b0f534b-30e5-41ab-9093-dfbb3b6b1756")
+	)
+	(no_connect
+		(at 143.51 57.15)
+		(uuid "5556caee-a770-4c2a-9b6f-78f293b195bb")
+	)
+	(no_connect
+		(at 111.76 59.69)
+		(uuid "58653531-d3db-4ebf-8424-2dd73a4482b9")
+	)
+	(no_connect
+		(at 78.74 87.63)
+		(uuid "5e14fc31-d35a-4097-a884-476f983f4fcc")
+	)
+	(no_connect
+		(at 143.51 100.33)
+		(uuid "6f9e86a4-45cb-41cd-8a67-245692459809")
+	)
+	(no_connect
+		(at 143.51 92.71)
+		(uuid "7509f834-7969-40d2-b512-bc3bb738b912")
+	)
+	(no_connect
+		(at 111.76 87.63)
+		(uuid "753579d6-8056-4979-b676-b8b509891f91")
+	)
+	(no_connect
+		(at 111.76 57.15)
+		(uuid "8665cd0e-af0f-4fb3-9236-08751ce34024")
+	)
+	(no_connect
+		(at 111.76 100.33)
+		(uuid "888b9120-6117-4c02-9436-c2a7311a98d6")
+	)
+	(no_connect
+		(at 143.51 64.77)
+		(uuid "99113bab-bb60-4207-8723-1159e1638271")
+	)
+	(no_connect
+		(at 78.74 92.71)
+		(uuid "bf6bf49c-4783-4859-a103-8b463e8943be")
+	)
+	(no_connect
+		(at 111.76 64.77)
+		(uuid "d8003a20-d75f-4890-81eb-09879c867ef6")
+	)
+	(no_connect
+		(at 111.76 52.07)
+		(uuid "d8348600-9924-44fa-8aa9-6fa4e830e328")
+	)
+	(no_connect
+		(at 111.76 92.71)
+		(uuid "da92d4c5-6a67-40c9-9f73-d1b0b2eebde4")
+	)
+	(no_connect
+		(at 111.76 95.25)
+		(uuid "dc0175fb-c236-4798-821a-9bed691cacd6")
+	)
+	(no_connect
+		(at 78.74 59.69)
+		(uuid "dd65a934-4647-49bf-8c66-b4516d60f74e")
+	)
+	(no_connect
+		(at 143.51 95.25)
+		(uuid "ece8ee2c-fd47-4a5e-9fda-6749b96cf10f")
+	)
+	(no_connect
+		(at 78.74 64.77)
+		(uuid "f1c18a90-8f5c-427e-9ed9-4b6ec2ce8ebe")
+	)
+	(no_connect
+		(at 143.51 87.63)
+		(uuid "fcd0ba4f-ecb4-482f-9402-05c35809d20f")
+	)
+	(no_connect
+		(at 143.51 52.07)
+		(uuid "fe9d62c6-85c3-495c-8de8-1c6dc89379a1")
+	)
+	(global_label "Power"
+		(shape bidirectional)
+		(at 111.76 97.79 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0d3e6634-60b0-4a9a-9aa2-401fdd810b86")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 121.4808 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANL"
+		(shape bidirectional)
+		(at 111.76 49.53 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "13593b1e-1bca-4737-9e66-2f423e3ae67f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 120.5737 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 111.76 54.61 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1378aa4a-338a-49c6-83f5-0ff53f3c3778")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.727 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 78.74 90.17 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1d8f94f5-6d5c-4b22-8673-b8c693f39fda")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 86.707 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANH"
+		(shape bidirectional)
+		(at 143.51 67.31 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1e368c77-303b-4891-9141-5ed14e56b0bf")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 152.6261 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANH"
+		(shape bidirectional)
+		(at 111.76 67.31 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "24c2570d-bf0f-4ad6-83a3-5e110ea66dd1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 120.8761 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANL"
+		(shape bidirectional)
+		(at 111.76 85.09 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2eb94eb3-1f1e-4039-b9f1-b96632e86877")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 120.5737 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Power"
+		(shape bidirectional)
+		(at 111.76 62.23 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3420a24b-5a5a-4733-b83d-e2e8b256d10b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 121.4808 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 111.76 90.17 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3bd91a86-f1fb-4ceb-8aae-e33df8f83675")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.727 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANH"
+		(shape bidirectional)
+		(at 78.74 67.31 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "45be49cf-ea9c-4a83-9d1b-dd3333a90281")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 87.8561 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 78.74 54.61 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "511609e6-47d7-4104-87e7-c755c9b4a27a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 86.707 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANL"
+		(shape bidirectional)
+		(at 143.51 49.53 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "637d1c54-d298-4924-97ae-c492c173a3fe")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 152.3237 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Power"
+		(shape bidirectional)
+		(at 143.51 62.23 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "655a7e1e-79e4-4b6f-9196-7d06c2ba3e26")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 153.2308 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANL"
+		(shape bidirectional)
+		(at 78.74 49.53 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "72cbaaaa-2182-480e-82b3-3b10eb589bda")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 87.5537 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANH"
+		(shape bidirectional)
+		(at 78.74 102.87 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "802d8eb3-a5fd-445a-96e9-9063c85904f7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 87.8561 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANH"
+		(shape bidirectional)
+		(at 143.51 102.87 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "94828f40-9c7f-4794-9fe5-b6189f04d579")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 152.6261 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Power"
+		(shape bidirectional)
+		(at 78.74 62.23 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c76cf691-b493-42b7-a4ba-3445ad0dee15")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 88.4608 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 143.51 54.61 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dee8c97d-49c6-4511-a84b-fc5e6314ac61")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 151.477 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Power"
+		(shape bidirectional)
+		(at 143.51 97.79 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "deef93fc-94a0-41dd-b94f-d4e234bcfefc")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 153.2308 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Power"
+		(shape bidirectional)
+		(at 78.74 97.79 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "eb6c582e-219c-4f3e-9ed2-042262cf36be")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 88.4608 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANL"
+		(shape bidirectional)
+		(at 78.74 85.09 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "edd866cc-c0d1-4de1-9348-72a0f3ee67fe")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 87.5537 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANL"
+		(shape bidirectional)
+		(at 143.51 85.09 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f131256d-3fa3-4a6e-8240-ac0d135e4b36")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 152.3237 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 143.51 90.17 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f3314d98-fc7f-4186-9f09-0d9fbf14189e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 151.477 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CANH"
+		(shape bidirectional)
+		(at 111.76 102.87 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f6cfe95c-c7ab-4a41-a479-a2f891059473")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 120.8761 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:RJ45")
+		(at 101.6 95.25 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "13ac7304-8234-4193-9852-72f610dda015")
+		(property "Reference" "J5"
+			(at 101.6 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "RJ45"
+			(at 101.6 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "KUT_Connector.pretty-master:7810-8P8C"
+			(at 101.6 94.615 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 101.6 94.615 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RJ connector, 8P8C (8 positions 8 connected)"
+			(at 101.6 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "e450e04b-8d6e-4cc2-b003-536bfba02d57")
+		)
+		(pin "8"
+			(uuid "8ec90529-4c68-4050-b699-bbe5b2ec57dc")
+		)
+		(pin "4"
+			(uuid "3e483262-2db6-494e-8619-beeeccbd4131")
+		)
+		(pin "1"
+			(uuid "5381c16e-78ec-431b-b36b-926374a774c3")
+		)
+		(pin "7"
+			(uuid "2ac4f7ca-55d1-485b-aca9-a2be21ec9f10")
+		)
+		(pin "2"
+			(uuid "74531572-f9b1-434e-9ded-4ed000bf1483")
+		)
+		(pin "5"
+			(uuid "ca9b3d10-bd30-4e72-a1e3-62726e0b68a9")
+		)
+		(pin "6"
+			(uuid "d4f1224d-464f-4ce0-83ae-52ad067a5f1b")
+		)
+		(instances
+			(project "RJ45hub"
+				(path "/ed31c94b-5a14-4293-9968-8f07a66085e6"
+					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:RJ45")
+		(at 133.35 95.25 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "14a292d9-dd15-426f-a1df-539bc18a948c")
+		(property "Reference" "J6"
+			(at 133.35 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "RJ45"
+			(at 133.35 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "KUT_Connector.pretty-master:7810-8P8C"
+			(at 133.35 94.615 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 133.35 94.615 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RJ connector, 8P8C (8 positions 8 connected)"
+			(at 133.35 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "d5f65196-2b31-4098-bb44-5c00515f6967")
+		)
+		(pin "8"
+			(uuid "dbe9f9af-c7cc-48f3-b874-c636113fe08a")
+		)
+		(pin "4"
+			(uuid "528ec075-5471-4e7b-bf27-c32f3af69b68")
+		)
+		(pin "1"
+			(uuid "64acb70f-2c60-4407-a444-79c738d87f44")
+		)
+		(pin "7"
+			(uuid "bef67d2b-1734-49c4-bc6a-83d4b8e05303")
+		)
+		(pin "2"
+			(uuid "d747f08f-89ff-4e25-b908-d230463979b7")
+		)
+		(pin "5"
+			(uuid "d8892002-cd23-490b-8b5d-7edaf4020999")
+		)
+		(pin "6"
+			(uuid "348ccf75-43ff-4997-9731-dfc9e6e9e010")
+		)
+		(instances
+			(project "RJ45hub"
+				(path "/ed31c94b-5a14-4293-9968-8f07a66085e6"
+					(reference "J6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:RJ45")
+		(at 133.35 59.69 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "69131c95-dfc8-4de2-9b8e-a2936eb01867")
+		(property "Reference" "J3"
+			(at 133.35 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "RJ45"
+			(at 133.35 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "KUT_Connector.pretty-master:7810-8P8C"
+			(at 133.35 59.055 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 133.35 59.055 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RJ connector, 8P8C (8 positions 8 connected)"
+			(at 133.35 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "4d29e60f-3ed1-4f07-853e-3022c9643b77")
+		)
+		(pin "8"
+			(uuid "5327a64b-bfa7-4b77-adf2-874770b29c3b")
+		)
+		(pin "4"
+			(uuid "dd047b28-5bad-47f0-b64e-70b1ff53c877")
+		)
+		(pin "1"
+			(uuid "5c451d03-0bcb-4656-95e6-cdf99252bb2d")
+		)
+		(pin "7"
+			(uuid "eb50e591-897a-4d9a-9980-b06460ac987e")
+		)
+		(pin "2"
+			(uuid "faf83cf9-db16-4973-b5a1-b75c2ae7f856")
+		)
+		(pin "5"
+			(uuid "96d44e53-3e78-4192-a69a-a5b11c5bb672")
+		)
+		(pin "6"
+			(uuid "c4165aa5-d501-4096-88ab-57a19134da95")
+		)
+		(instances
+			(project "RJ45hub"
+				(path "/ed31c94b-5a14-4293-9968-8f07a66085e6"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:RJ45")
+		(at 68.58 95.25 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7b3bb8d0-eed0-4dee-9ab0-6c5d6c8257e8")
+		(property "Reference" "J4"
+			(at 68.58 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "RJ45"
+			(at 68.58 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "KUT_Connector.pretty-master:7810-8P8C"
+			(at 68.58 94.615 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 68.58 94.615 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RJ connector, 8P8C (8 positions 8 connected)"
+			(at 68.58 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "1613d31a-0e8b-4109-ac91-3b668602ccbb")
+		)
+		(pin "8"
+			(uuid "33d89cb9-69bc-4e7d-ab36-9333f0a3f8f7")
+		)
+		(pin "4"
+			(uuid "71d1be2b-1745-4211-859a-ed87d5118635")
+		)
+		(pin "1"
+			(uuid "49a634e7-f29e-4c20-b7cd-9870c2a9bae8")
+		)
+		(pin "7"
+			(uuid "672e5da6-9eb6-49e4-9a30-b88e98fc5bbe")
+		)
+		(pin "2"
+			(uuid "aea3324e-4651-4e9a-b893-166eb4d39eb4")
+		)
+		(pin "5"
+			(uuid "1afac666-aaa9-409f-959c-e62d4117cec0")
+		)
+		(pin "6"
+			(uuid "71ddf673-5dd2-4310-9b22-024be0da61eb")
+		)
+		(instances
+			(project "RJ45hub"
+				(path "/ed31c94b-5a14-4293-9968-8f07a66085e6"
+					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:RJ45")
+		(at 68.58 59.69 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b581c67d-2e3d-44b1-93d7-155935c9bf79")
+		(property "Reference" "J1"
+			(at 68.58 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "RJ45"
+			(at 68.58 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "KUT_Connector.pretty-master:7810-8P8C"
+			(at 68.58 59.055 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 68.58 59.055 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RJ connector, 8P8C (8 positions 8 connected)"
+			(at 68.58 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "ded6fed2-0e48-4ac3-acf2-f4d39229338f")
+		)
+		(pin "8"
+			(uuid "f4cb379a-ae15-484f-9029-1bedc617c722")
+		)
+		(pin "4"
+			(uuid "8dfcdb51-abd0-426e-ade1-fbe8857b3c0a")
+		)
+		(pin "1"
+			(uuid "bad7111c-785f-4048-a267-ce27858be439")
+		)
+		(pin "7"
+			(uuid "1f0ab0d6-a5ae-4be4-a519-fb713dffc9bf")
+		)
+		(pin "2"
+			(uuid "042e8f08-0291-48cf-b02c-ac985cdc1139")
+		)
+		(pin "5"
+			(uuid "b6c80561-a31f-4979-8938-bf5fd7830afe")
+		)
+		(pin "6"
+			(uuid "cc4fd91f-ec95-4685-bc4e-b4e40a57cc14")
+		)
+		(instances
+			(project "RJ45hub"
+				(path "/ed31c94b-5a14-4293-9968-8f07a66085e6"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:RJ45")
+		(at 101.6 59.69 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c109e058-4b3b-4b5a-abf5-77e27d0e9e0a")
+		(property "Reference" "J2"
+			(at 101.6 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "RJ45"
+			(at 101.6 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "KUT_Connector.pretty-master:7810-8P8C"
+			(at 101.6 59.055 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 101.6 59.055 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RJ connector, 8P8C (8 positions 8 connected)"
+			(at 101.6 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "bcb0b363-565a-4a51-b250-8002b2d2f5e4")
+		)
+		(pin "8"
+			(uuid "44e23d93-3d5b-4719-9806-5df31d9ff93f")
+		)
+		(pin "4"
+			(uuid "7318d20c-59da-4ad1-9f7b-1b034a2fd11d")
+		)
+		(pin "1"
+			(uuid "36d4a7f0-3c20-4818-8951-c992bec822a7")
+		)
+		(pin "7"
+			(uuid "063561e0-0320-4064-8f90-6779f2826ed4")
+		)
+		(pin "2"
+			(uuid "777c5672-c490-49d1-81ff-04631ee25d18")
+		)
+		(pin "5"
+			(uuid "0aac9e49-50e0-4e0c-b283-1b05b6334482")
+		)
+		(pin "6"
+			(uuid "6948249e-9596-4b56-ab00-46de022c3f8f")
+		)
+		(instances
+			(project "RJ45hub"
+				(path "/ed31c94b-5a14-4293-9968-8f07a66085e6"
+					(reference "J2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

@@ -23,17 +23,27 @@ Madgwick MadgwickFilter;
 // I2C address
 const int ADT_addr = 0x48;
 const int RTC_addr = 0x68;
+
 const int BMX_Acc = 0x19;
 const int BMX_Gyro = 0x69;
 const int BMX_Mag = 0x13;
 
 // Sensor status
-int SDstatus = 0;           // 0: not initialized, 1: initialized
-int hh, mm, ss, ms;         // RTC time
-const int MagdwickHz = 100; // 周波数。１秒間に何回データを読み込むかの値
-const float magdwickinterval = 1000 / MagdwickHz;
-float ax, ay, az, gx, gy, gz, roll, pitch, yaw;
-int mx, my, mz;
+int SDstatus = 0;   // 0: not initialized, 1: initialized
+int hh, mm, ss, ms; // RTC time
+
+float ax = 0.00;
+float ay = 0.00;
+float az = 0.00;
+float gx = 0.00;
+float gy = 0.00;
+float gz = 0.00;
+int mx = 0.00;
+int my = 0.00;
+int mz = 0.00;
+float pitch = 0.00;
+float roll = 0.00;
+float yaw = 0.00;
 
 // function prototype
 byte read_RTC(byte);
@@ -51,7 +61,8 @@ void setup()
   Serial.begin(115200);
   Serial.println("Start");
 
-  BMX055_Init();
+  MadgwickFilter.begin(100);
+  BMX055_Init(); // BMX055の初期化
 
   /*
   if (!SD.begin())
@@ -188,18 +199,19 @@ void time_update(void *param)
     int month = BCD_to_int(month_r);
     int year = BCD_to_int(year_r);
 
-    Serial.print(year);
-    Serial.print("/");
-    Serial.print(month);
-    Serial.print("/");
-    Serial.print(date);
-    Serial.print("/");
-    Serial.print(hour);
-    Serial.print(":");
-    Serial.print(min);
-    Serial.print(":");
-    Serial.println(sec);
-
+    /*
+        Serial.print(year);
+        Serial.print("/");
+        Serial.print(month);
+        Serial.print("/");
+        Serial.print(date);
+        Serial.print("/");
+        Serial.print(hour);
+        Serial.print(":");
+        Serial.print(min);
+        Serial.print(":");
+        Serial.println(sec);
+    */
     vTaskDelay(1000);
   }
 }
@@ -229,8 +241,8 @@ void GetBoardTemp(void *param)
     }
 
     fVal = (float)iVal / 16.0; // change to float
-    Serial.println(fVal, 4);   // send to serial monitor
-    vTaskDelay(1000);          // wait 1 sec
+    // Serial.println(fVal, 4);   // send to serial monitor
+    vTaskDelay(1000); // wait 1 sec
   }
 }
 
@@ -244,7 +256,7 @@ void showIMUdata(void *param)
     Serial.print(",");
     Serial.print(yaw);
     Serial.println("");
-    vTaskDelay(1000);
+    vTaskDelay(10);
   }
 }
 

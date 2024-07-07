@@ -4,6 +4,7 @@
 
 // Send data to CAN bus
 // Get Data And Send to CAN bus
+// CANBUSマイナス処理,送信データに符号データを含ませる。
 
 // ESP32 SCL->GPIO22
 // ESP32 SDA->GPIO21
@@ -35,9 +36,27 @@ const int BMX_Acc = 0x19;
 const int BMX_Gyro = 0x69;
 const int BMX_Mag = 0x13;
 
+// CAN address
+byte pitchCANaddr = 0x01;
+byte rollCANaddr = 0x02;
+byte yawCANaddr = 0x03;
+byte axCANaddr = 0x04;
+byte ayCANaddr = 0x05;
+byte azCANaddr = 0x06;
+byte gxCANaddr = 0x07;
+byte gyCANaddr = 0x08;
+byte gzCANaddr = 0x09;
+byte mxCANaddr = 0x0A;
+byte myCANaddr = 0x0B;
+byte mzCANaddr = 0x0C;
+byte PcbTempCANaddr = 0x0D;
+byte SDstatusCANaddr = 0x0E;
+
 // Sensor status
 int SDstatus = 0;                       // 0: failed, 1: success
 int year, month, date, hour, minu, sec; // RTC time
+
+int sgnfcntDgt = 5; // 有効数字
 
 float ax = 0.00;
 float ay = 0.00;
@@ -65,7 +84,7 @@ void read_Angle(void);
 void time_update(void);
 void SD_write(void);
 void GetBoardTemp(void);
-void CAN_SEND(byte CANaddr, int data, int length);
+void CAN_SEND(byte CANaddr, int data, uint8_t sign, uint8_t exp); // sing 0:plus, 1:minus
 
 void setup()
 {
@@ -91,6 +110,7 @@ void setup()
   }
 
   // CAN setup (500kbps)
+  CAN.setPins(33, 32);
   if (!CAN.begin(500E3))
   {
     CANstatus = 0; // failed
@@ -128,7 +148,7 @@ void setup()
                        2,            // priority
                        NULL,         // task handle
                        0);           // core number
-
+  /*
   xTaskCreateUniversal(showIMUdata,   // function
                        "showIMUdata", // function name
                        4096,          // stack size
@@ -136,6 +156,7 @@ void setup()
                        1,             // priority
                        NULL,          // task handle
                        1);            // core number
+                       */
 }
 
 void SD_write(void *param)
@@ -303,11 +324,25 @@ void GetBoardTemp(void *param)
 
     PcbTemp = (float)iVal / 16.0; // change to float
     // Serial.println(PcbTemp, 4);   // send to serial monitor
+
+    // send PcbTemp to CANBUS
+    uint32_t PcbTempInt = (int)(PcbTemp * (pow(10, sgnfcntDgt)));
+    CAN_SEND(PcbTempCANaddr, PcbTempInt, 0, sgnfcntDgt); // sign is 0:plus
+    // check
+    Serial.print(PcbTempCANaddr, HEX);
+    Serial.print(",");
+    Serial.print(PcbTempInt);
+    Serial.print(",");
+    Serial.print("0");
+    Serial.print(",");
+    Serial.println(sgnfcntDgt);
+
     vTaskDelay(1000); // wait 1 sec
   }
 }
 
 // show other data for debug
+/*
 void showIMUdata(void *param)
 {
   while (1)
@@ -336,6 +371,7 @@ void showIMUdata(void *param)
     vTaskDelay(10);
   }
 }
+*/
 
 void GetIMUdata(void *param)
 {
@@ -488,16 +524,64 @@ void BMX055_Init() // BMX055の初期化
   Wire.endTransmission();
 }
 
-// 複数バイト送れるようにする。特にIMU系データ。
-void CAN_SEND(byte CANaddr, int data, int length)
+// 32bit仮定でバイト送れるようにする。
+void CAN_SEND(byte CANaddr, uint32_t data, uint8_t sign, uint8_t exp)
 {
+  // SEND 32bit data
+  // devide data to 4byte
   CAN.beginPacket(CANaddr);
-  CAN.write(status);
-  CAN.write(angleHighByte);
-  CAN.write(angleLowByte);
+  CAN.write(sign); // 0:plus, 1:minus
+  CAN.write(exp);  // 10^exp
+  Serial.println(CANaddr, HEX);
+  Serial.println(sign);
+  Serial.println(exp);
+  for (int i = 3; i >= 0; i--)
+  {
+    byte dataByte = (byte)(data >> (i * 8));
+    CAN.write(dataByte);
+    Serial.println(dataByte);
+  }
   CAN.endPacket();
   Serial.println("done");
 }
+
+// receive
+/*
+void CAN_RECEIVE()
+{
+  int packetSize = CAN.parsePacket();
+  if (packetSize)
+  {
+    // パケットが受信された場合
+    byte CANaddr = CAN.read(); // 最初のバイトはCANアドレス
+    uint32_t data = 0;         // 受信データを格納する変数
+
+    // 残りのバイトを読み込む
+    for (int i = 0; i < 4; i++)
+    {
+      data = (data << 8) | CAN.read();
+    }
+
+    // CANaddrによってデータの型を判断
+    if (CANaddr == 0x00)
+    {
+      // int型として処理
+      int intData = (int)data;
+      Serial.print("Received int: ");
+      Serial.println(intData);
+    }
+    else if (CANaddr == 0x0F)
+    {
+      // float型として処理
+      float floatData;
+      memcpy(&floatData, &data, sizeof(float)); // uint32_tからfloatへの変換
+      Serial.print("Received float: ");
+      Serial.println(floatData);
+    }
+  }
+}
+*/
+
 void loop()
 {
   delay(1); // for WDT

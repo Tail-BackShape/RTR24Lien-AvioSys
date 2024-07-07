@@ -295,7 +295,7 @@ void showIMUdata(void *param)
 {
   while (1)
   {
-    Serial.print(pitch);
+    Serial.print(pitch, 5);
     Serial.print(",");
     Serial.print(roll);
     Serial.print(",");

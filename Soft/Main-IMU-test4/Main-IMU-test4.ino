@@ -525,7 +525,7 @@ void BMX055_Init() // BMX055の初期化
 }
 
 // 32bit仮定でバイト送れるようにする。
-void CAN_SEND(byte CANaddr, uint32_t data, uint8_t sign, uint8_t exp)
+void CAN_SEND(byte CANaddr, uint32_t data, byte sign, byte exp)
 {
   // SEND 32bit data
   // devide data to 4byte

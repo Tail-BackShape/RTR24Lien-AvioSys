@@ -33,7 +33,7 @@ float PcbTemp = 0;
 
 void CAN_SEND(byte CANaddr, int data, uint8_t sign, uint8_t exp);
 void CAN_RECEIVE();
-void chng(byte CANaddr, uint32_t data, byte exp);
+void chng(byte CANaddr, int32_t data, byte exp);
 
 void setup()
 {
@@ -60,16 +60,11 @@ void CAN_RECEIVE()
     byte sign = CAN.read();        // 符号を取得
     byte exp = CAN.read();         // 指数を取得
 
-    // Serial.println(CANaddr, HEX);
-    // Serial.println(sign);
-    // Serial.println(exp);
-
-    uint32_t data = 0;
+    int32_t data = 0;
     for (int i = 0; i < 4; i++)
     {
       byte dataByte = CAN.read(); // データの各バイトを受信
       data = (data << 8) | dataByte;
-      // Serial.println(dataByte);
     }
 
     if (sign == 1)
@@ -78,56 +73,78 @@ void CAN_RECEIVE()
     }
 
     chng(CANaddr, data, exp);
-
-    // Serial.println("Data received:");
-    // Serial.println(PcbTemp, exp);
-    // Serial.println("done");
   }
 }
 
-void chng(byte CANaddr, uint32_t data, byte exp)
+void chng(byte CANaddr, int32_t data, byte exp)
 {
-  float fData = data * (pow(10, (-1 * exp)));
+  float fData = (float)(data) * (pow(10, (-1 * exp)));
   switch (CANaddr)
   {
   case pitchCANaddr:
     pitch = fData;
+    Serial.print("pitch: ");
+    Serial.println(pitch);
     break;
   case rollCANaddr:
     roll = fData;
+    Serial.print("roll: ");
+    Serial.println(roll);
     break;
   case yawCANaddr:
     yaw = fData;
+    Serial.print("yaw: ");
+    Serial.println(yaw);
     break;
   case axCANaddr:
     ax = fData;
+    Serial.print("ax: ");
+    Serial.println(ax);
     break;
   case ayCANaddr:
     ay = fData;
+    Serial.print("ay: ");
+    Serial.println(ay);
     break;
   case azCANaddr:
     az = fData;
+    Serial.print("az: ");
+    Serial.println(az);
     break;
   case gxCANaddr:
     gx = fData;
+    Serial.print("gx: ");
+    Serial.println(gx);
     break;
   case gyCANaddr:
     gy = fData;
+    Serial.print("gy: ");
+    Serial.println(gy);
     break;
   case gzCANaddr:
     gz = fData;
+    Serial.print("gz: ");
+    Serial.println(gz);
     break;
   case mxCANaddr:
     mx = fData;
+    Serial.print("mx: ");
+    Serial.println(mx);
     break;
   case myCANaddr:
     my = fData;
+    Serial.print("my: ");
+    Serial.println(my);
     break;
   case mzCANaddr:
     mz = fData;
+    Serial.print("mz: ");
+    Serial.println(mz);
     break;
   case PcbTempCANaddr:
     PcbTemp = fData;
+    Serial.print("PcbTemp: ");
+    Serial.println(PcbTemp);
     break;
   default:
     break;

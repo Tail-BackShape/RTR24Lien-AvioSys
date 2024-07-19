@@ -10,6 +10,8 @@
 
 // 6.ノード基板の送信部分を作成
 
+// 7.SDwrite以外の機能をすべて実装
+
 // ESP32 SCL->GPIO22
 // ESP32 SDA->GPIO21
 
@@ -43,7 +45,6 @@ int SDstatus = 0;                       // 0: failed, 1: success
 int BMP280_status = 1;                  // 0: failed, 1: success
 int year, month, date, hour, minu, sec; // RTC time
 
-/*
 // Main(OTHER)
 float ax = 0.00;
 float ay = 0.00;
@@ -58,7 +59,7 @@ float pitch = 0.00;
 float roll = 0.00;
 float yaw = 0.00;
 float PcbTemp = 0.00;
-*/
+
 // Node(THIS)
 float SpacePres = 0.00;
 float SpaceTemp = 0.00;
@@ -67,39 +68,38 @@ float Pitot1 = 0.00;
 float Pitot2 = 0.00;
 float Pitot3 = 0.00;
 
+// CAN address(MAIN)
+const int pitchCANaddr = 0x01;
+const int rollCANaddr = 0x02;
+const int yawCANaddr = 0x03;
+const int axCANaddr = 0x04;
+const int ayCANaddr = 0x05;
+const int azCANaddr = 0x06;
+const int gxCANaddr = 0x07;
+const int gyCANaddr = 0x08;
+const int gzCANaddr = 0x09;
+const int mxCANaddr = 0x0A;
+const int myCANaddr = 0x0B;
+const int mzCANaddr = 0x0C;
+const int PcbTempCANaddr = 0x0D;
+const int SDstatusCANaddr = 0x0E;
+
+// CAN address(NODE)
+const int SpacePresCANaddr = 0x0F;
+const int SpaceTempCANaddr = 0x10;
+const int AltCANaddr = 0x11;
+const int Pitot1CANaddr = 0x12;
+const int Pitot2CANaddr = 0x13;
+const int Pitot3CANaddr = 0x14;
+
 uint8_t CANstatus = 1;  // 0: failed, 1: success
 uint8_t sgnfcntDgt = 5; // 有効数字
-
-/*
-// CAN address(MAIN)
-byte pitchCANaddr = 0x01;
-byte rollCANaddr = 0x02;
-byte yawCANaddr = 0x03;
-byte axCANaddr = 0x04;
-byte ayCANaddr = 0x05;
-byte azCANaddr = 0x06;
-byte gxCANaddr = 0x07;
-byte gyCANaddr = 0x08;
-byte gzCANaddr = 0x09;
-byte mxCANaddr = 0x0A;
-byte myCANaddr = 0x0B;
-byte mzCANaddr = 0x0C;
-byte PcbTempCANaddr = 0x0D;
-byte SDstatusCANaddr = 0x0E;
-*/
-
-// CAN address(THIS-NODE)
-byte SpacePresCANaddr = 0x0F;
-byte SpaceTempCANaddr = 0x10;
-byte AltCANaddr = 0x11;
-byte Pitot1CANaddr = 0x12;
-byte Pitot2CANaddr = 0x13;
-byte Pitot3CANaddr = 0x14;
 
 // function prototype
 byte read_RTC(byte);
 int BCD_to_int(byte);
 void CAN_SEND(byte, uint32_t, uint8_t, uint8_t);
+void chng(byte, int32_t, byte);
 
 // RTOSTasks Prototype Declaration
 void read_Angle(void);
@@ -109,6 +109,7 @@ void Get_SpaceData(void); // Pressure and Temp
 void SEND_SpaceData(void);
 void Get_PitotData(void); // 3 Pitot tube Volts
 void SEND_PitotData(void);
+void CAN_RECEIVE(void);
 
 void setup()
 {
@@ -186,7 +187,7 @@ void setup()
                        NULL,             // task handle
                        1);               // core number
 
-  // this
+  // this was paniced
   xTaskCreateUniversal(Get_PitotData,   // function
                        "Get_PitotData", // function name
                        8192,            // stack size
@@ -202,6 +203,15 @@ void setup()
                        2,                // priority
                        NULL,             // task handle
                        1);               // core number
+
+  // 7.new
+  xTaskCreateUniversal(CAN_RECEIVE,   // function
+                       "CAN_RECEIVE", // function name
+                       4096,          // stack size
+                       NULL,          // piont
+                       2,             // priority
+                       NULL,          // task handle
+                       1);            // core number
 }
 
 /*
@@ -353,10 +363,10 @@ void Get_SpaceData(void *param)
     {
       SpaceTemp = bmp.readTemperature();
       SpacePres = bmp.readPressure();
-      Serial.print("Temp: ");
-      Serial.println(SpaceTemp, 6);
-      Serial.print("Pres: ");
-      Serial.println(SpacePres, 6);
+      // Serial.print("Temp: ");
+      // Serial.println(SpaceTemp, 6);
+      // Serial.print("Pres: ");
+      // Serial.println(SpacePres, 6);
     }
     vTaskDelay(200);
   }
@@ -394,12 +404,12 @@ void Get_PitotData(void *param)
     Pitot2 = ads.computeVolts(adc1);
     Pitot3 = ads.computeVolts(adc2);
 
-    Serial.print("Pitot1: ");
-    Serial.println(Pitot1, 6);
-    Serial.print("Pitot2: ");
-    Serial.println(Pitot2, 6);
-    Serial.print("Pitot3: ");
-    Serial.println(Pitot3, 6);
+    // Serial.print("Pitot1: ");
+    // Serial.println(Pitot1, 6);
+    // Serial.print("Pitot2: ");
+    // Serial.println(Pitot2, 6);
+    // Serial.print("Pitot3: ");
+    // Serial.println(Pitot3, 6);
 
     vTaskDelay(200);
   }
@@ -443,6 +453,141 @@ void CAN_SEND(byte CANaddr, uint32_t data, byte sign, byte exp)
   }
   CAN.endPacket();
   // Serial.println("done");
+}
+
+void CAN_RECEIVE(void *param)
+{
+  while (1)
+  {
+    if (CANstatus == 1)
+    {
+      if (CAN.parsePacket())
+      {
+        byte CANaddr = CAN.packetId(); // パケットのID（アドレス）を取得
+        byte sign = CAN.read();        // 符号を取得
+        byte exp = CAN.read();         // 指数を取得
+
+        int32_t data = 0;
+        for (int i = 0; i < 4; i++)
+        {
+          byte dataByte = CAN.read(); // データの各バイトを受信
+          data = (data << 8) | dataByte;
+        }
+
+        if (sign == 1)
+        {
+          data = -data;
+        }
+
+        chng(CANaddr, data, exp);
+      }
+    }
+  }
+}
+
+void chng(byte CANaddr, int32_t data, byte exp)
+{
+  float fData = (float)(data) * (pow(10, (-1 * exp)));
+  switch (CANaddr)
+  {
+  case pitchCANaddr:
+    pitch = fData;
+    Serial.print("pitch: ");
+    Serial.println(pitch);
+    break;
+  case rollCANaddr:
+    roll = fData;
+    Serial.print("roll: ");
+    Serial.println(roll);
+    break;
+  case yawCANaddr:
+    yaw = fData;
+    Serial.print("yaw: ");
+    Serial.println(yaw);
+    break;
+  case axCANaddr:
+    ax = fData;
+    Serial.print("ax: ");
+    Serial.println(ax);
+    break;
+  case ayCANaddr:
+    ay = fData;
+    Serial.print("ay: ");
+    Serial.println(ay);
+    break;
+  case azCANaddr:
+    az = fData;
+    Serial.print("az: ");
+    Serial.println(az);
+    break;
+  case gxCANaddr:
+    gx = fData;
+    Serial.print("gx: ");
+    Serial.println(gx);
+    break;
+  case gyCANaddr:
+    gy = fData;
+    Serial.print("gy: ");
+    Serial.println(gy);
+    break;
+  case gzCANaddr:
+    gz = fData;
+    Serial.print("gz: ");
+    Serial.println(gz);
+    break;
+  case mxCANaddr:
+    mx = fData;
+    Serial.print("mx: ");
+    Serial.println(mx);
+    break;
+  case myCANaddr:
+    my = fData;
+    Serial.print("my: ");
+    Serial.println(my);
+    break;
+  case mzCANaddr:
+    mz = fData;
+    Serial.print("mz: ");
+    Serial.println(mz);
+    break;
+  case PcbTempCANaddr:
+    PcbTemp = fData;
+    Serial.print("PcbTemp: ");
+    Serial.println(PcbTemp);
+    break;
+  case SpacePresCANaddr:
+    SpacePres = fData;
+    Serial.print("SpacePres: ");
+    Serial.println(SpacePres);
+    break;
+  case SpaceTempCANaddr:
+    SpaceTemp = fData;
+    Serial.print("SpaceTemp: ");
+    Serial.println(SpaceTemp);
+    break;
+  case AltCANaddr:
+    Alt = fData;
+    Serial.print("Alt: ");
+    Serial.println(Alt);
+    break;
+  case Pitot1CANaddr:
+    Pitot1 = fData;
+    Serial.print("Pitot1: ");
+    Serial.println(Pitot1);
+    break;
+  case Pitot2CANaddr:
+    Pitot2 = fData;
+    Serial.print("Pitot2: ");
+    Serial.println(Pitot2);
+    break;
+  case Pitot3CANaddr:
+    Pitot3 = fData;
+    Serial.print("Pitot3: ");
+    Serial.println(Pitot3);
+    break;
+  default:
+    break;
+  }
 }
 
 void loop()

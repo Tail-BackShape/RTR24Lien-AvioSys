@@ -120,14 +120,21 @@ void setup()
   Serial.println("Start");
 
   // BMP280 setup
-  bmp.begin(BMP280_addr);
-
-  /* Default settings from datasheet. */
-  bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
-                  Adafruit_BMP280::SAMPLING_X2,     /* Temp. oversampling */
-                  Adafruit_BMP280::SAMPLING_X16,    /* Pressure oversampling */
-                  Adafruit_BMP280::FILTER_X16,      /* Filtering. */
-                  Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
+  unsigned status;
+  status = bmp.begin(BMP280_ADDRESS);
+  if (!status)
+  {
+    BMP280_status = 0; // failed
+  }
+  else
+  {
+    /* Default settings from datasheet. */
+    bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
+                    Adafruit_BMP280::SAMPLING_X2,     /* Temp. oversampling */
+                    Adafruit_BMP280::SAMPLING_X16,    /* Pressure oversampling */
+                    Adafruit_BMP280::FILTER_X16,      /* Filtering. */
+                    Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
+  }
 
   // ADS1115 setup
   // 後でステータス追加
@@ -353,10 +360,6 @@ void Get_SpaceData(void *param)
     {
       SpaceTemp = bmp.readTemperature();
       SpacePres = bmp.readPressure();
-      Serial.print("Temp: ");
-      Serial.println(SpaceTemp, 6);
-      Serial.print("Pres: ");
-      Serial.println(SpacePres, 6);
     }
     vTaskDelay(200);
   }
@@ -364,17 +367,16 @@ void Get_SpaceData(void *param)
 
 void SEND_SpaceData(void *param)
 {
-  uint8_t ASPsgnfcntDgt = 4;
   while (1)
   {
     uint8_t SpaceTempSign = SpaceTemp < 0 ? 1 : 0;
     uint8_t SpacePresSign = SpacePres < 0 ? 1 : 0;
 
     uint32_t SpaceTempInt = (int)(abs(SpaceTemp) * (pow(10, sgnfcntDgt)));
-    uint32_t SpacePresInt = (int)(abs(SpacePres) * (pow(10, ASPsgnfcntDgt)));
+    uint32_t SpacePresInt = (int)(abs(SpacePres) * (pow(10, sgnfcntDgt)));
 
     CAN_SEND(SpaceTempCANaddr, SpaceTempInt, SpaceTempSign, sgnfcntDgt);
-    CAN_SEND(SpacePresCANaddr, SpacePresInt, SpacePresSign, ASPsgnfcntDgt);
+    CAN_SEND(SpacePresCANaddr, SpacePresInt, SpacePresSign, sgnfcntDgt);
     vTaskDelay(200);
   }
 }
@@ -394,12 +396,12 @@ void Get_PitotData(void *param)
     Pitot2 = ads.computeVolts(adc1);
     Pitot3 = ads.computeVolts(adc2);
 
-    Serial.print("Pitot1: ");
-    Serial.println(Pitot1, 6);
-    Serial.print("Pitot2: ");
-    Serial.println(Pitot2, 6);
-    Serial.print("Pitot3: ");
-    Serial.println(Pitot3, 6);
+    Serial.print(Pitot1, 6);
+    Serial.print(",");
+    Serial.print(Pitot2, 6);
+    Serial.print(",");
+    Serial.print(Pitot3, 6);
+    Serial.println();
 
     vTaskDelay(200);
   }

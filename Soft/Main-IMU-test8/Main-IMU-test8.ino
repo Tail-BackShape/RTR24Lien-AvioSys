@@ -12,6 +12,8 @@
 
 // 7.SDwrite以外の機能をすべて実装
 
+// 8.SDwrite実装したら終わり（のはず）
+
 // ESP32 SCL->GPIO22
 // ESP32 SDA->GPIO21
 
@@ -126,7 +128,7 @@ void setup()
   BMX055_Init(); // BMX055の初期化
 
   // SD setup
-  if (!SD.begin())
+  if (!SD.begin(4))
   {
     Serial.println("Card Mount Failed");
   }
@@ -147,9 +149,9 @@ void setup()
                        "SD_write", // function name
                        4096,       // stack size
                        NULL,       // piont
-                       1,          // priority
+                       4,          // priority
                        NULL,       // task handle
-                       1);         // core number
+                       0);         // core number
 
   xTaskCreateUniversal(time_update,   // function
                        "time_update", // function name
@@ -165,7 +167,7 @@ void setup()
                        NULL,           // piont
                        2,              // priority
                        NULL,           // task handle
-                       0);             // core number
+                       1);             // core number
 
   xTaskCreateUniversal(GetIMUdata,   // function
                        "GetIMUdata", // function name
@@ -173,7 +175,7 @@ void setup()
                        NULL,         // piont
                        2,            // priority
                        NULL,         // task handle
-                       0);           // core number
+                       1);           // core number
 
   xTaskCreateUniversal(SEND_IMU,   // function
                        "SEND_IMU", // function name
@@ -181,7 +183,7 @@ void setup()
                        NULL,       // piont
                        2,          // priority
                        NULL,       // task handle
-                       0);         // core number
+                       1);         // core number
 
   xTaskCreateUniversal(SEND_PcbTemp,   // function
                        "SEND_PcbTemp", // function name
@@ -189,7 +191,7 @@ void setup()
                        NULL,           // piont
                        1,              // priority
                        NULL,           // task handle
-                       0);             // core number
+                       1);             // core number
   /*
   xTaskCreateUniversal(showIMUdata,   // function
                        "showIMUdata", // function name
@@ -205,14 +207,14 @@ void setup()
                        "CAN_RECEIVE", // function name
                        4096,          // stack size
                        NULL,          // piont
-                       2,             // priority
+                       3,             // priority
                        NULL,          // task handle
                        1);            // core number
 }
 
 void SD_write(void *param)
 {
-  vTaskDelay(1500);
+  vTaskDelay(2000);
   int DoCycleMs = 50; //(20hz)
   String filename = "/" + String(month) + "-" + String(date) + "-" + String(hour) + "-" + String(minu) + "-" + String(sec) + ".csv";
   File file = SD.open(filename, FILE_APPEND);
@@ -287,6 +289,7 @@ void SD_write(void *param)
         vTaskDelay(DoCycleMs);
       }
     }
+    vTaskDelay(1);
   }
 }
 
@@ -346,7 +349,7 @@ void time_update(void *param)
         Serial.print(":");
         Serial.println(sec);
     */
-    vTaskDelay(1000);
+    vTaskDelay(200);
   }
 }
 
@@ -385,7 +388,7 @@ void GetBoardTemp(void *param)
     Serial.print(",");
     Serial.println(sgnfcntDgt);
     */
-    vTaskDelay(1000); // wait 1 sec
+    vTaskDelay(500); // wait 0.5 sec
   }
 }
 
@@ -399,7 +402,7 @@ void SEND_PcbTemp(void *param)
     uint32_t PcbTempInt = (int)(abs(PcbTemp) * (pow(10, sgnfcntDgt)));
 
     CAN_SEND(PcbTempCANaddr, PcbTempInt, PcbTempSign, sgnfcntDgt); // sing 0:plus, 1:minus
-    vTaskDelay(1000);
+    vTaskDelay(500);
   }
 }
 
@@ -520,6 +523,8 @@ void GetIMUdata(void *param)
     pitch = MadgwickFilter.getPitch();
     roll = MadgwickFilter.getRoll();
     yaw = MadgwickFilter.getYaw();
+
+    vTaskDelay(1);
   }
 }
 
@@ -705,6 +710,7 @@ void CAN_RECEIVE(void *param)
         chng(CANaddr, data, exp);
       }
     }
+    vTaskDelay(1); // wait 1ms
   }
 }
 
@@ -715,98 +721,98 @@ void chng(byte CANaddr, int32_t data, byte exp)
   {
   case pitchCANaddr:
     pitch = fData;
-    Serial.print("pitch: ");
-    Serial.println(pitch);
+    // Serial.print("pitch: ");
+    // Serial.println(pitch);
     break;
   case rollCANaddr:
     roll = fData;
-    Serial.print("roll: ");
-    Serial.println(roll);
+    // Serial.print("roll: ");
+    //  Serial.println(roll);
     break;
   case yawCANaddr:
     yaw = fData;
-    Serial.print("yaw: ");
-    Serial.println(yaw);
+    //  Serial.print("yaw: ");
+    //  Serial.println(yaw);
     break;
   case axCANaddr:
     ax = fData;
-    Serial.print("ax: ");
-    Serial.println(ax);
+    //  Serial.print("ax: ");
+    // Serial.println(ax);
     break;
   case ayCANaddr:
     ay = fData;
-    Serial.print("ay: ");
-    Serial.println(ay);
+    // Serial.print("ay: ");
+    // Serial.println(ay);
     break;
   case azCANaddr:
     az = fData;
-    Serial.print("az: ");
-    Serial.println(az);
+    // Serial.print("az: ");
+    // Serial.println(az);
     break;
   case gxCANaddr:
     gx = fData;
-    Serial.print("gx: ");
-    Serial.println(gx);
+    // Serial.print("gx: ");
+    // Serial.println(gx);
     break;
   case gyCANaddr:
     gy = fData;
-    Serial.print("gy: ");
-    Serial.println(gy);
+    // Serial.print("gy: ");
+    // Serial.println(gy);
     break;
   case gzCANaddr:
     gz = fData;
-    Serial.print("gz: ");
-    Serial.println(gz);
+    // Serial.print("gz: ");
+    // Serial.println(gz);
     break;
   case mxCANaddr:
     mx = fData;
-    Serial.print("mx: ");
-    Serial.println(mx);
+    // Serial.print("mx: ");
+    // Serial.println(mx);
     break;
   case myCANaddr:
     my = fData;
-    Serial.print("my: ");
-    Serial.println(my);
+    // Serial.print("my: ");
+    // Serial.println(my);
     break;
   case mzCANaddr:
     mz = fData;
-    Serial.print("mz: ");
-    Serial.println(mz);
+    // Serial.print("mz: ");
+    // Serial.println(mz);
     break;
   case PcbTempCANaddr:
     PcbTemp = fData;
-    Serial.print("PcbTemp: ");
-    Serial.println(PcbTemp);
+    // Serial.print("PcbTemp: ");
+    // Serial.println(PcbTemp);
     break;
   case SpacePresCANaddr:
     SpacePres = fData;
-    Serial.print("SpacePres: ");
-    Serial.println(SpacePres);
+    // Serial.print("SpacePres: ");
+    // Serial.println(SpacePres);
     break;
   case SpaceTempCANaddr:
     SpaceTemp = fData;
-    Serial.print("SpaceTemp: ");
-    Serial.println(SpaceTemp);
+    // Serial.print("SpaceTemp: ");
+    // Serial.println(SpaceTemp);
     break;
   case AltCANaddr:
     Alt = fData;
-    Serial.print("Alt: ");
-    Serial.println(Alt);
+    // Serial.print("Alt: ");
+    // Serial.println(Alt);
     break;
   case Pitot1CANaddr:
     Pitot1 = fData;
-    Serial.print("Pitot1: ");
-    Serial.println(Pitot1);
+    // Serial.print("Pitot1: ");
+    // Serial.println(Pitot1);
     break;
   case Pitot2CANaddr:
     Pitot2 = fData;
-    Serial.print("Pitot2: ");
-    Serial.println(Pitot2);
+    // Serial.print("Pitot2: ");
+    // Serial.println(Pitot2);
     break;
   case Pitot3CANaddr:
     Pitot3 = fData;
-    Serial.print("Pitot3: ");
-    Serial.println(Pitot3);
+    // Serial.print("Pitot3: ");
+    // Serial.println(Pitot3);
     break;
   default:
     break;

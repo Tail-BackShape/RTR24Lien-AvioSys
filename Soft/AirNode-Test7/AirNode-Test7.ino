@@ -63,7 +63,6 @@ float PcbTemp = 0.00;
 // Node(THIS)
 float SpacePres = 0.00;
 float SpaceTemp = 0.00;
-float Alt = 0.00;
 float Pitot1 = 0.00;
 float Pitot2 = 0.00;
 float Pitot3 = 0.00;
@@ -87,7 +86,6 @@ const int SDstatusCANaddr = 0x0E;
 // CAN address(NODE)
 const int SpacePresCANaddr = 0x0F;
 const int SpaceTempCANaddr = 0x10;
-const int AltCANaddr = 0x11;
 const int Pitot1CANaddr = 0x12;
 const int Pitot2CANaddr = 0x13;
 const int Pitot3CANaddr = 0x14;
@@ -190,7 +188,7 @@ void setup()
   // this was paniced
   xTaskCreateUniversal(Get_PitotData,   // function
                        "Get_PitotData", // function name
-                       8192,            // stack size
+                       4096,            // stack size
                        NULL,            // piont
                        2,               // priority
                        NULL,            // task handle
@@ -212,6 +210,8 @@ void setup()
                        2,             // priority
                        NULL,          // task handle
                        1);            // core number
+
+  vTaskDelay(1000);
 }
 
 /*
@@ -404,14 +404,14 @@ void Get_PitotData(void *param)
     Pitot2 = ads.computeVolts(adc1);
     Pitot3 = ads.computeVolts(adc2);
 
-    // Serial.print("Pitot1: ");
-    // Serial.println(Pitot1, 6);
-    // Serial.print("Pitot2: ");
-    // Serial.println(Pitot2, 6);
-    // Serial.print("Pitot3: ");
-    // Serial.println(Pitot3, 6);
+    Serial.print("Pitot1: ");
+    Serial.println(Pitot1, 6);
+    Serial.print("Pitot2: ");
+    Serial.println(Pitot2, 6);
+    Serial.print("Pitot3: ");
+    Serial.println(Pitot3, 6);
 
-    vTaskDelay(200);
+    vTaskDelay(50);
   }
 }
 
@@ -430,7 +430,7 @@ void SEND_PitotData(void *param)
     CAN_SEND(Pitot1CANaddr, Pitot1Int, Pitot1Sign, sgnfcntDgt);
     CAN_SEND(Pitot2CANaddr, Pitot2Int, Pitot2Sign, sgnfcntDgt);
     CAN_SEND(Pitot3CANaddr, Pitot3Int, Pitot3Sign, sgnfcntDgt);
-    vTaskDelay(200);
+    vTaskDelay(50);
   }
 }
 
@@ -564,11 +564,6 @@ void chng(byte CANaddr, int32_t data, byte exp)
     SpaceTemp = fData;
     Serial.print("SpaceTemp: ");
     Serial.println(SpaceTemp);
-    break;
-  case AltCANaddr:
-    Alt = fData;
-    Serial.print("Alt: ");
-    Serial.println(Alt);
     break;
   case Pitot1CANaddr:
     Pitot1 = fData;

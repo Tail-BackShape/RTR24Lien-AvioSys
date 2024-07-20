@@ -118,8 +118,8 @@ void setup()
   Wire.begin();
 
   // Serial setup
-  Serial.begin(115200);
-  Serial.println("Start");
+  // Serial.begin(115200);
+  // Serial.println("Start");
 
   // IMU setup
   MadgwickFilter.begin(100);
@@ -128,7 +128,7 @@ void setup()
   // SD setup
   if (!SD.begin(4))
   {
-    Serial.println("Card Mount Failed");
+    // Serial.println("Card Mount Failed");
   }
   else
   {
@@ -224,24 +224,20 @@ void SD_write(void *param)
   {
     if (SDstatus == 1)
     {
-      /*
+      if (sec != previousSec) // 秒が更新されたかチェック
+      {
+        ms = 0;            // secが更新されたらmsをリセット
+        previousSec = sec; // 現在のsecをpreviousSecに更新
+      }
 
-*/
       // write to SD
       while (ms < 1000)
       {
-
         File file = SD.open(filename, FILE_APPEND);
         if (!file)
         {
-          Serial.println("Failed to open file");
+          // Serial.println("Failed to open file");
           return;
-        }
-
-        if (sec != previousSec) // 秒が更新されたかチェック
-        {
-          ms = 0;            // secが更新されたらmsをリセット
-          previousSec = sec; // 現在のsecをpreviousSecに更新
         }
 
         // write timestamp
@@ -305,43 +301,44 @@ void SD_write(void *param)
 
         file.close();
 
-        Serial.print("pitch: ");
-        Serial.println(pitch);
-        Serial.print("roll: ");
-        Serial.println(roll);
-        Serial.print("yaw: ");
-        Serial.println(yaw);
-        Serial.print("ax: ");
-        Serial.println(ax);
-        Serial.print("ay: ");
-        Serial.println(ay);
-        Serial.print("az: ");
-        Serial.println(az);
-        Serial.print("gx: ");
-        Serial.println(gx);
-        Serial.print("gy: ");
-        Serial.println(gy);
-        Serial.print("gz: ");
-        Serial.println(gz);
-        Serial.print("mx: ");
-        Serial.println(mx);
-        Serial.print("my: ");
-        Serial.println(my);
-        Serial.print("mz: ");
-        Serial.println(mz);
-        Serial.print("PcbTemp: ");
-        Serial.println(PcbTemp);
-        Serial.print("SpacePres: ");
-        Serial.println(SpacePres);
-        Serial.print("SpaceTemp: ");
-        Serial.println(SpaceTemp);
-        Serial.print("Pitot1: ");
-        Serial.println(Pitot1);
-        Serial.print("Pitot2: ");
-        Serial.println(Pitot2);
-        Serial.print("Pitot3: ");
-        Serial.println(Pitot3);
-
+        /*
+                Serial.print("pitch: ");
+                Serial.println(pitch);
+                Serial.print("roll: ");
+                Serial.println(roll);
+                Serial.print("yaw: ");
+                Serial.println(yaw);
+                Serial.print("ax: ");
+                Serial.println(ax);
+                Serial.print("ay: ");
+                Serial.println(ay);
+                Serial.print("az: ");
+                Serial.println(az);
+                Serial.print("gx: ");
+                Serial.println(gx);
+                Serial.print("gy: ");
+                Serial.println(gy);
+                Serial.print("gz: ");
+                Serial.println(gz);
+                Serial.print("mx: ");
+                Serial.println(mx);
+                Serial.print("my: ");
+                Serial.println(my);
+                Serial.print("mz: ");
+                Serial.println(mz);
+                Serial.print("PcbTemp: ");
+                Serial.println(PcbTemp);
+                Serial.print("SpacePres: ");
+                Serial.println(SpacePres);
+                Serial.print("SpaceTemp: ");
+                Serial.println(SpaceTemp);
+                Serial.print("Pitot1: ");
+                Serial.println(Pitot1);
+                Serial.print("Pitot2: ");
+                Serial.println(Pitot2);
+                Serial.print("Pitot3: ");
+                Serial.println(Pitot3);
+        */
         ms += DoCycleMs;
         vTaskDelay(DoCycleMs);
       }

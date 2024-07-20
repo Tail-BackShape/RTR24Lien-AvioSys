@@ -285,7 +285,7 @@ void SD_write(void *param)
         file.print(", ");
 
         // write PCB temp
-        file.print(PcbTemp, 4);
+        file.print(PcbTemp);
 
         // Write Node data
         file.print(", ");
@@ -293,11 +293,11 @@ void SD_write(void *param)
         file.print(", ");
         file.print(SpaceTemp);
         file.print(", ");
-        file.print(Pitot1);
+        file.print(Pitot1, 5);
         file.print(", ");
-        file.print(Pitot2);
+        file.print(Pitot2, 5);
         file.print(", ");
-        file.print(Pitot3);
+        file.print(Pitot3, 5);
 
         file.println();
 
